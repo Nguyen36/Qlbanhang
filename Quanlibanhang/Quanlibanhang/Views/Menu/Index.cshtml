@@ -1,0 +1,9 @@
+﻿<ul class="dropdown-menu">
+    @foreach(var item in ViewBag.TenLoaiSp)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Home",new {malsp = @item.Key })">@item.Value</a>
+                </li>
+            }
+    
+</ul>

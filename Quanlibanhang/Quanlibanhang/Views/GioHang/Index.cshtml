@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model List<Quanlibanhang.Models.CartItem>
+@if(Model == null)
+            {
+
+
+<p>Chua co san pham trong gio hang</p>
+}
+else
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Ma hang</th>
+                                    <th>Ten hang</th>
+                                    <th>So luong</th>
+                                    <th>Don gia</th>
+                                    <th>Thanh tien</th>
+                                </tr>
+                                <tr>
+                                    @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.MaSP</td>
+                        <td><a href="@Url.Action("Details", "Sanphams", new {id=item.MaSP})">@item.TenSP</a></td>
+                        <td>
+                            <form action="@Url.Action("Update")" method="get">
+                                <input type="hidden" name="MaSP" value="@item.MaSP" />
+                                <input type="number" name="txtSoLuong" min="1" value="@item.SoLuong" />
+                                ,<button type="submit" class="btn tbtn-sm btn-success">Cap nhat</button>
+                            </form>
+
+                        </td>
+                        <td>@item.DonGia.ToString()</td>
+                        <td>@item.ThanhTien.ToString()</td>
+                        <td><a href="@Url.Action("DelCartItem", new {MaSP=item.MaSP})" onclick="return confirm('Xoa san pham nay?');" class="btn btn-danger btn-sm"></a></td>
+                    </tr>
+                }
+                                </tr>
+                            <tr>
+                                <td></td>
+                                <td class="text-right">Tong so luong</td>
+                                <td>@Model.Sum(m => m.SoLuong)</td>
+                                <td class="text-right">Tong thanh tien</td>
+                                <td>@Model.Sum(m => m.ThanhTien)</td>
+                                <td></td>
+                            </tr>
+                               <tr>
+                                   <td colspan="6">
+                                       <form action="@Url.Action("Order","Giohang")" method="get">
+                                           Email: <input type="email" name="Email"/>
+                                           SDT: <input type="text" name="Phone" />
+                                           <button type="submit" class="btn-sm btn btn-success">Dat hang</button>
+                                           <a class="btn btn-success btn-sm" href="@Url.Action("Index","Home")" >Tiep tuc mua sam</a>
+                                       </form>
+                                   </td>
+                               </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+<h2>Index</h2>
+
+

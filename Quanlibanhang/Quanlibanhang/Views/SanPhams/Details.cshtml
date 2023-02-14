@@ -1,0 +1,62 @@
+﻿@model Quanlibanhang.Models.SanPham
+@using Quanlibanhang.Models;
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Donvitinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donvitinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dongia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhSP)
+        </dt>
+
+        <dd>
+            @Html.Image("../../" + @Model.HinhSP, "alt", "100")<br />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiSP.TenLoaiSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSP.TenLoaiSP)
+        </dd>
+        <dt></dt>
+        <dd>
+            <a class="btn btn-success btn-sm" href="@Url.Action("AddToCart","GioHang",new {MaSP= @Model.MaSP})">Them vao gio</a>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Index","Home",new {MaSP= @Model.MaSP})">Quay lai</a>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

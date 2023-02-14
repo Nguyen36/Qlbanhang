@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Quanlibanhang.Models.CTHD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+    @foreach (var m in ViewBag.Main)
+    {
+        <h3>So hoa don: @m.hoadon.MaHD</h3>
+        <h3>Ten khach: @m.khachhang.TenKH</h3>
+    }
+   
+<table class="table table-striped">
+    <tr>
+        <th>So TT</th>
+        <th>Ten SP</th>
+        <th>Don vi</th>
+        <th>SL</th>
+        <th>Don gia</th>
+        <th>Thanh tien</th>
+    </tr>
+    @{
+        double tongtien = 0;
+        int i = 0;
+    }
+    @foreach (var item in ViewBag.Sub)
+    {
+        i++;
+        tongtien += (Convert.ToDouble(@item.cthd.Soluong) * Convert.ToDouble(@item.cthd.DongiaBan));
+        <tr>
+            <td>@i</td>
+            <td>@item.sanpham.TenSP</td>
+            <td>@item.sanpham.Donvitinh</td>
+            <td>@item.cthd.Soluong</td>
+            <td>@String.Format("{0:0,##0}", item.cthd.DongiaBan)</td>
+            <td>@String.Format("{0:0,##0}", item.Thanhtien)</td>
+        </tr>
+    }
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Tong tien: </th>
+        <th>@String.Format("{0:0,##0}", tongtien)</th>
+    </tr>
+</table>
+
